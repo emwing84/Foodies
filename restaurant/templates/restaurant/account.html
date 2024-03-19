@@ -1,0 +1,42 @@
+{% extends "restaurant/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <br>
+    <div class="card d-flex mx-auto" style="max-width: 740px;">
+        <div class="row g-0 m-3">
+            <div class="col-md-4">
+                {% if request.user.profile %}
+                    <img src="{{ request.user.profile.profile_pic.url }}" class="img-fluid rounded-start" alt="account-pic">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">Account Settings</h5>
+                    <form action="{% url 'update_account' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label for="username">User Name:</label>
+                        <input type="text" id="username" name="username" value="{{account.profile.name}}"><br><br>
+
+                        <label for="phone">Phone (optional):</label>
+                        <input type="text" id="phone" name="phone" value="{{account.profile.phone}}"><br><br>
+
+                        <label for="myfile">Upload Photo:</label>
+                        <input type="file" id="myfile" name="myfile" value="{{account.profile.profile_pic.url}}"><br><br>
+                        {% if message %}
+                            <div>{{ message }}</div>
+                        {% endif %}
+                        <input class="btn btn-outline-secondary" type="submit" name="update_information">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'restaurant/restaurant.js' %}"></script>
+{% endblock %}

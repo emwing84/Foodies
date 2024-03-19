@@ -1,0 +1,49 @@
+{% extends "restaurant/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <br/>
+
+    <div class="card d-flex mx-auto" style="max-width: 740px;">
+        <div class"row g-0 m-3">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <h5 class"card-title">Find a Restaurant to review</h5>
+                    <form action="{% url 'createReview' %}" method="POST" id="post-form">
+                        {% csrf_token %}
+                        <label for="restaurant"> Select Restaurant</label><br>
+                        <select class="form-select" aria-label="default" id="restaurant" name="restaurant">
+                            <option disabled selected value> -- option -- </option>
+                            {% for restaurant in restaurants %}
+                                <option class="select-item" value="{{ restaurant.id }}" data-id="{{ restaurant.id }}" id="select-item"> {{ restaurant.name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <div class="restaurant-info form-label" id="restaurant-info">
+                        </div>
+
+                        {% if message %}
+                        <div class="message" id="message">{{ message }}</div>
+                        {% endif %}
+
+                        <div class="form-group my-2">
+                            <div class="restaurant-id" id="restaurant-id" name="id"></div>
+                            <textarea class="form-control" name="content" id="post-body" placeholder="Write a comment"></textarea>
+                            <br/>
+                            <button id="post-submit" type="submit" class="btn btn-primary">Post Review</button>
+                        </div>
+                    </form>
+                    <br>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'restaurant/restaurant.js' %}"></script>
+{% endblock %}

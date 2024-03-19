@@ -1,0 +1,39 @@
+{% extends "restaurant/layout.html" %}
+{% load static %}
+
+{% block body %}
+<br/>
+
+<div class="card d-flex mx-auto" style="max-width: 740px;">
+    <div class="row g-0 m-3">
+        <div class="col-md-6">
+            <div class="card-body">
+                <h5 class="card-title">Add a New Restaurant</h5>
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <label for="category"> Select Category</label><br>
+                    <select class="form-select" aria-label="default" id="category" name="category">
+                        <option disabled selected value> -- option -- </option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}"> {{ category.categoryType }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="name" class="form-label">Restaurant Name:</label>
+                    <input type="text" class="form-control" id="name" name="name">
+
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address"><br>
+
+                    <input class="btn btn-outline-secondary" id="submit" type="submit" name="new_restaurant">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'restaurant/new_restaurant.js' %}"></script>
+{% endblock %}

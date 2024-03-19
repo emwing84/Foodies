@@ -1,0 +1,192 @@
+
+
+.new-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#post-body {
+    height: 100px;
+}
+
+#like {
+    margin: 0px 3px 0px 0px;
+}
+
+
+.list-group-item {
+    margin: 5px 20px;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#post-timestamp {
+    color: gray;
+}
+
+.btn-container {
+    display: flex;
+}
+
+#profile-pic {
+    width: 40px;
+    height:40px;
+    border-radius: 50%;
+}
+
+#account-pic {
+    width: 200px;
+    height:200px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.map {
+    z-index: 3;
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    margin: 100px;
+}
+
+body {
+    height: 100%;
+} 
+
+.box-area{
+    width: 930px;
+}
+
+.rounded-4{
+    border-radius: 20px;
+}
+
+.rounded-5{
+    border-radius: 30px;
+}
+
+html, body{
+    height: 100%;
+}
+
+.map-contanier{
+    height: 40%;
+}
+
+.map {
+    position: relative;
+    width: 90%;
+    height: 400px;
+    top: 0;
+    bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        backdrop-filter: blur(10px);
+    }
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after{
+    content: '';
+    opacity: 0;
+    transition: all 0.2s;
+    height: 2px;
+    width: 100%;
+    background-color: blue;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.nav-link:hover::after {
+    opacity: 1;
+}
+
+.calendar {
+    width: 98%;
+    margin: auto;
+    font-size: 13px;
+}
+
+.calendar tr, .calendar td {
+border: 1px solid black;
+}
+
+.calendar th {
+padding: 10px;
+text-align: center;
+font-size: 18px;
+}
+
+.calendar td {
+width: 200px;
+height: 150px;
+padding: 20px 0px 0px 5px;
+}
+
+.month {
+font-size: 25px;
+}
+
+.date {
+font-size: 16px;
+}
+
+ul {
+height: 100%;
+padding: 0px 5px 0px 20px;
+}
+
+a {
+color: gray;
+}
+
+.left {
+    float: left;
+  }
+  
+.right {
+float: right;
+}
+
+.btn btn-info left {
+outline: none;
+color: black;
+background-color: transparent;
+box-shadow: 0 0 0 0;
+}
+
+.btn btn-info right {
+    outline: none;
+    color: black;
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
+    }
+
+.clearfix {
+margin: 15px;
+}
+
+.form {
+    margin: auto;
+}
+  
+.form input, .form select, .form textarea {
+border-radius: 5px;
+border: 1px solid gray;
+outline: none;
+background: none;
+padding: 5px;
+width: 100%;
+}

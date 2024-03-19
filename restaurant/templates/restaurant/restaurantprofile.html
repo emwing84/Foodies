@@ -1,0 +1,92 @@
+{% extends "restaurant/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div>
+        <h5> {{ restaurant.name }} </h5>
+        <h6> {{ restaurant.address }}</h6>
+    </div>
+
+    <div style="display: none;">
+        <p id="latitude">{{ restaurant_address.latitude }}</p>
+        <p id="longitude">{{ restaurant_address.longitude }}</p>
+    </div>
+
+    <div id="map-container">
+        <div class="map" id="map"></div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <h5 class="col-6">Reviews({{ posts.count }}):</h4>
+            <a class="btn btn-primary col-1" role="button" href="{% url 'event_new' restaurant.id %}"> Reservation</a>
+        </div>
+    </div>
+    <div id="posts-detail-view">
+        <ul class="list-group">
+            {% for post in page_obj.object_list %}
+                <li class="list-group-item border-3" data-id="{{ post.id }}">
+                    <img class"profile-pic" id="profile-pic" src="{{ post.user.profile.profile_pic.url }}"/>
+                    <a href="{% url 'profile' post.user.id %}"><strong> {{ post.user }}</strong></a>
+                    <br>
+                    <a href="{% url 'restaurantProfile' post.restaurant.id %}"> {{post.restaurant.name }}</a>
+                    <p id="post-text"> {{ post.content }} </p>
+                    <p id="category"> #{{ post.restaurant.category.categoryType }}</p>
+                    <p id="post-timestamp"> {{ post.timestamp }} </p>
+
+                    {% if user in post.like.all %}
+                        <button type="button" class="btn btn-outline-danger" id="like"> <span id="number"> {{ post.like.all.count }} </span> &#128077;</button>
+                    {% else %}
+                        <button type="button" class="btn btn-outline-primary" id="like"> <span id="number"> {{ post.like.all.count }} </span> &#128077;</button>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        {% if user == post.poster %}
+                            <button class="btn btn-outline-secondary" id="edit">Edit</button>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination d-flex justify-content-center">
+            <li class="page-item">
+                {% if page_obj.has_previous %}
+                    <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                {% endif %}
+            </li>
+            {% for page_number in page_obj.paginator.page_range %}
+                {% if current_page == page_number %}
+                    <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="?page={{page_number}}">{{page_number}}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_number}}">{{page_number}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <li class="page-item">
+                {% if page_obj.has_next %}
+                    <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'restaurant/map.js' %}"></script>
+    <script src="{% static 'restaurant/post.js' %}"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet-vector@4.2.3/dist/esri-leaflet-vector.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+{% endblock %}
