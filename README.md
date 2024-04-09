@@ -33,3 +33,4 @@ Reservations are handled through the Event model and are displayed as clickable 
 1. In the terminal, navigate to the foodie directory.
 2. Run `python manage.py makemigrations restaurant` to create migrations for the restaurant app.
 3. Run `python manage.py migrate` to apply migrations to the database.
+"# Foodies" 

@@ -1,3 +1,4 @@
 Django==3.2.23
 Pillow==8.4.0
 Geopy==2.2.0
+psycopg2

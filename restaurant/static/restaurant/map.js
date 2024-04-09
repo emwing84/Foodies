@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Map
-    const apiKey = "AAPKfc8d74ba03df40b284c296e6a8c89fb8N1SgKAtjq0XUmUXFrHWz2B1vr_35AbRyZyySGghIO9TmYkPI_9AeiSPumcTH1WBX";
+    const apiKey = "";
     const basemapEnum = "arcgis/navigation";
 
     const latitude_str = document.querySelector('#latitude').innerHTML;

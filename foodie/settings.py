@@ -75,12 +75,27 @@ WSGI_APPLICATION = 'foodie.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
+# original sqlite setting
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'DEMO_TEST',
+        'USER': 'postgres',
+        'PASSWORD': '1580wash',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
+'''
 
 AUTH_USER_MODEL = 'restaurant.User'
 
